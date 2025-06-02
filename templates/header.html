@@ -1,0 +1,397 @@
+
+
+
+
+
+{% load bangla_filters %}
+
+
+            <header role="banner" >
+              
+                <div style="background-color: #c51212;">
+                    <div style="max-width: 1200px; margin: 0 auto; padding: 3px 95px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <!-- Left: Date -->
+                            <div style="color: white; font-size: 16px; display: flex; align-items: center; gap: 8px;" class="date-container">
+                                <div>
+                                    <svg width="20" height="20" viewBox="0 0 100 100">
+                                        <!-- Background -->
+                                        <rect x="10" y="20" width="80" height="70" rx="10" ry="10" fill="white" stroke="white" stroke-width="4"/>
+                                        
+                                        <!-- Calendar Header -->
+                                        <rect x="10" y="20" width="80" height="15" fill="white"/>
+                                        
+                                        <!-- Calendar Rings -->
+                                        <circle cx="30" cy="15" r="5" fill="white"/>
+                                        <circle cx="70" cy="15" r="5" fill="white"/>
+                                        
+                                        <!-- Calendar Grid -->
+                                        <rect x="25" y="40" width="10" height="10" fill="red"/>
+                                        <rect x="45" y="40" width="10" height="10" fill="red"/>
+                                        <rect x="65" y="40" width="10" height="10" fill="red"/>
+                                        
+                                        <rect x="25" y="60" width="10" height="10" fill="red"/>
+                                        <rect x="45" y="60" width="10" height="10" fill="red"/>
+                                        <rect x="65" y="60" width="10" height="10" fill="red"/>
+                                    </svg>
+                                </div>
+                                
+                                <div>
+                                    {% with day=current_date.day|bangla_number month=current_date.month|bangla_month year=current_date.year|bangla_number %}
+                                        {{ day }} {{ month }}, {{ year }}
+                                    {% endwith %}
+                                </div>
+                            </div>
+                            
+                            
+                            <!-- Center: Logo -->
+                            <div>
+                                <a href="/" id="topPage" style="display: block; text-align: center; padding:7px;">
+                                    <img width="130" height="auto" src="{{ site_info.logo.url }}" alt="Site Logo">
+                                </a>
+                            </div>
+                            
+                            <!-- Right: Search -->
+                            
+
+                            <div style="color: white; font-size: 16px; display: flex; justify-content: space-between; align-items: center;" class="for-desctop">
+                                <!-- Search Section -->
+                                <div class="search-container" style="flex-grow: 1;">
+                                    <form method="get" action="{% url 'search_news' %}" style="display: flex; align-items: center; width: 100%;">
+                                        <input type="text" name="q" class="search-input" placeholder="Search..." style="flex-grow: 1;">
+                                        <button type="submit" class="search-button" style="margin-left: 10px;">
+                                            <svg width="16" height="16" viewBox="0 0 100 100">
+                                                <!-- Search Circle -->
+                                                <circle cx="40" cy="40" r="25" stroke="red" stroke-width="10" fill="none"/>
+                                                <!-- Search Handle -->
+                                                <line x1="60" y1="60" x2="85" y2="85" stroke="red" stroke-width="10" stroke-linecap="round"/>
+                                            </svg>
+                                        </button>
+                                    </form>
+                                </div>
+                            
+                                <!-- Video Section -->
+                                <div style="margin-left: 10px; margin-top: 2px;">
+                                    <a href="/news/?section=8">
+                                        <svg width="53" height="53" viewBox="0 0 100 100">
+                                            <!-- Video Background -->
+                                            <rect x="10" y="20" width="80" height="60" rx="10" ry="10" fill="red" stroke="red" stroke-width="4"/>
+                                            <!-- Play Button (Triangle) -->
+                                            <polygon points="40,35 40,65 70,50" fill="white"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            
+
+
+                         
+
+
+                            
+
+                        </div>
+                    </div>
+                </div>
+                
+                
+
+                <nav role="navigation" dir="ltr" class="bbc-1lmzg8c e11sm0on0 hide-pc" style="background-color: rgb(255, 255, 255) !important;">
+                    <div class="bbc-14sj40g e11sm0on5">
+                        <div class="bbc-bjn8wh e1h1xvny0">
+                            
+                            <button type="button" id="navToggle" class="nav-toggle" aria-expanded="false">
+                                <svg focusable="false" width="2.75rem" height="2.75rem" viewBox="0 0 44 44" aria-hidden="true">
+                                    <path d="M12 29h21v-2.333H12V29zm0-5.833h21v-2.334H12v2.334zM12 15v2.333h21V15H12z"></path>
+                                </svg>
+                             
+                            </button>
+                          
+                            <div data-e2e="scrollable-nav" dir="ltr" class="bbc-mcfoow ekdzu100">
+                                <ul role="list" class="bbc-11krpir e11sm0on4">
+                                   
+                                    
+                                                    <li dir="ltr" role="listitem" class="bbc-zakhp8 e11sm0on2"><a
+                                                        href="/"
+                                                        class="focusIndicatorRemove bbc-azrnys e11sm0on3">মূলপাতা</a></li>
+
+                                                    {% for nav in navbar_item %}
+                                     <li dir="ltr" role="listitem" class="bbc-zakhp8 e11sm0on2"><a
+                                            href="{{ nav.get_absolute_url }}"
+                                            class="focusIndicatorRemove bbc-azrnys e11sm0on3">{{ nav.title }}</a></li>
+
+                                            {% endfor %}
+                                
+                                </ul>
+                            </div>
+
+
+
+
+
+
+
+
+                            <div id="dropdownNav" class="dropdown-nav">
+                                <ul role="list" class="dropdown-list">
+                                    <li role="listitem">
+                                        <a href="/">
+                                            <span dir="ltr" role="text">
+                                                <span class="current-page"></span>মূলপাতা
+                                            </span>
+                                        </a>
+                                    </li>
+
+                                    {% for nav in navbar_item %}
+                                    <li role="listitem"><a href="{{ nav.get_absolute_url }}">{{ nav.title }}</a></li>
+                                    {% endfor %}
+                                   
+                                </ul>
+                            </div>
+
+
+
+                        </div>
+                      
+                    </div>
+                </nav>   
+
+
+
+
+                
+            </header>
+                <!-- header end -->
+
+
+
+
+
+                <style>
+  
+                    .news-container {
+                     
+                
+                      font-size: 16px;
+                      font-weight: bold;
+                      text-transform: uppercase;
+                      letter-spacing: 2px;
+                      animation: ticker 15s infinite linear;
+                    }
+                
+                
+                
+                    /* Ticker animation */
+                    @keyframes ticker {
+                      from {
+                        transform: translateX(100%);
+                      }
+                      to {
+                        transform: translateX(-100%);
+                      }
+                    }
+                  </style>
+                
+                  
+                
+
+
+
+
+                <header role="banner">
+                    <nav role="navigation" dir="ltr" class="bbc-1lmzg8c e11sm0on0 hide-pc" style="background-color: aliceblue !important;">
+                        <div class="bbc-14sj40g e11sm0on5">
+                            <div class="bbc-bjn8wh e1h1xvny0">
+                                <div data-e2e="scrollable-nav" dir="ltr" class="bbc-mcfoow ekdzu100">
+                                    <ul role="list" class="bbc-11krpir e11sm0on4" style="padding-top: 10px;">
+                                        {% if current_url == "https://jagoronnews.com/" %}
+                                            <div class="news-container">
+                                                <p>ঢাকায় আজকের সেহরি ও ইফতারের সময়সূচী: সেহরি- <span style="color: #f70f0f;">{{ sehri_time }}</span> , ইফতার- <span style="color: #f70f0f;">{{ iftar_time }}</span></p>
+                                            </div>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </header>
+                
+
+                
+                
+                
+      
+
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const navToggle = document.getElementById('navToggle');
+                        const dropdownNav = document.getElementById('dropdownNav');
+                        
+                        navToggle.addEventListener('click', function() {
+                            const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+                            navToggle.setAttribute('aria-expanded', !isExpanded);
+                            dropdownNav.classList.toggle('show');
+                        });
+                    
+                        // Close dropdown when clicking outside
+                        document.addEventListener('click', function(event) {
+                            if (!navToggle.contains(event.target) && !dropdownNav.contains(event.target)) {
+                                navToggle.setAttribute('aria-expanded', 'false');
+                                dropdownNav.classList.remove('show');
+                            }
+                        });
+                    });
+                    </script>
+
+
+
+
+
+                <style>
+
+
+
+                    .navbar-logo {
+    float: left;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+}
+
+
+
+
+.search-container {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.search-input {
+    padding: 8px 12px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    width: 200px;
+}
+
+.search-button {
+    background: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    color: #f70f0f;
+    display: flex;
+    align-items: center;
+}
+
+.search-button:hover {
+    color: #f70f0f;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .search-input {
+        width: 150px;
+    }
+}
+
+
+@media (max-width: 768px) {
+    /* Hide the current date and search bar */
+    .date-container, .search-container {
+        display: none;
+    }
+    .for-desctop {
+        display: none !important;
+    }
+    .bbc-1lmzg8c{
+        height: 3rem !important;
+    }
+}
+
+                </style>
+
+
+
+<style>
+    .mobile-nav {
+        width: 100%;
+    }
+    
+    .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .nav-wrapper {
+        position: relative;
+    }
+    
+    .nav-toggle {
+        background: none;
+        border: none;
+        padding: 5px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+    }
+    
+    .nav-toggle svg {
+        fill: currentColor;
+    }
+    
+    .section-text {
+        margin-left: 8px;
+    }
+    
+    .dropdown-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #000;
+        z-index: 1000;
+    }
+    
+    .dropdown-nav.show {
+        display: block;
+    }
+    
+    .dropdown-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .dropdown-list li {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .dropdown-list a {
+        color: white;
+        text-decoration: none;
+        padding: 15px 20px;
+        display: block;
+    }
+    
+    .dropdown-list a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .current-page {
+        color: #757575;
+    }
+    
+    @media (min-width: 768px) {
+        .nav-toggle {
+            display: none;
+        }
+    }
+    </style>
+    

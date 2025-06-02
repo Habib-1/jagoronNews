@@ -1,0 +1,59 @@
+<footer role="contentinfo" class="bbc-1lvqtkx e1njnjcp0">
+    <div class="ep1mqcj0 bbc-5g7yny e10yv9r12">
+
+        <!-- logo section start -->
+        <div class="bbc-1dg7u9h e10yv9r13"><a href="/" id="footer"
+                class="focusIndicatorRemove bbc-1re47cx e10yv9r11" aria-labelledby="BrandLink-footer">
+                <img width="130" height="36" src="{{site_info.logo.url}}" alt="">
+                <span id="BrandLink-footer" role="text" class="bbc-m04vo2"><span lang="en-GB">BBC
+                        News, </span><span>বাংলা</span></span></a></div>
+        <!-- logo section end -->
+
+
+    </div>
+
+    <div class="bbc-1ec4rn5">
+        <div class="bbc-n6enek">
+            <ul role="list" class="bbc-18pquoo">
+
+                {% for page in default_pages %}
+                {% if page.link and page.link == 'institutional' %}
+                <li class="bbc-a32bmp"><a href="{% url 'default_page_detail' page.link %}"
+                        class="focusIndicatorInvert bbc-14imjm8">{{ page.title }}</a>
+                </li>
+                {% endif %}
+                {% endfor %}
+
+              
+                {% for page in default_pages %}
+                    {% if page.link and page.link != 'institutional' and page.link != 'editorialguidelines' %}
+                        <li role="listitem">
+                            <a href="{% url 'default_page_detail' page.link %}" class="focusIndicatorInvert bbc-14imjm8">
+                                {{ page.title }}
+                            </a>
+                        </li>
+
+                  
+                    {% endif %}
+                {% endfor %}
+
+            </ul>
+
+            <p class="bbc-cmqtv6"><span lang="en-GB">©<!-- --> </span>2025 জাগরণ। বাইরের কোন সাইটের তথ্যের
+                জন্য জাগরণ দায়বদ্ধ নয়।<!-- --> 
+
+                {% for page in default_pages %}
+                {% if page.link and page.link == 'editorialguidelines' %}
+
+                <a style="font-weight: 800; color: aliceblue;" href="{% url 'default_page_detail' page.link %}">{{ page.title }}</a>
+
+                    {% endif %}
+                {% endfor %}
+                
+                </p>
+        </div>
+    </div>
+
+</footer>
+
+
