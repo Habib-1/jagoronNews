@@ -3,14 +3,12 @@ from . import views
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('news/', views.news_page, name='news_page'),
-    path('news/detail/<int:news_id>/', views.news_detail, name='news_detail'),
-    path('default-pages/<str:link>/', views.default_page_detail, name='default_page_detail'),
-    path('jagoron-1lakh/', views.generate_photo, name='generate_photo'),
-
-    path('search/', views.search_news, name='search_news'),
-    
-
-    path('s/<str:short_code>/', views.redirect_short_url, name='redirect_short_url'),
-    path('api/create-short-url/', views.create_short_url, name='create_short_url'),
+    path('news/details/<int:pk>/',views.news_details,name='news_details'),
+    path('news/all/', views.news_by_category, name='news_by_cat'),
+    path('category/news/<int:cat_id>/', views.news_by_category,name='news_by_cat'),
+    path('today/news/', views.today_news, name='today_news'),
+    path('breaking/news/', views.breaking_news, name='breaking_news'),
+    path('policy/<str:link>/',views.policy_detail,name='policy_detail'),
+    path('subscribe/', views.subscribe_form, name='subscribe'),
+    path('subscribe/form/',views.subscribe_form,name='subscribe_form'),
 ]

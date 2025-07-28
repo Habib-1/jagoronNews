@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load custom_filters %} {# Assuming these are necessary for your Django project #}
+{% load bangla_filters %} {# Assuming these are necessary for your Django project #}
+{% load static %} {# Assuming these are necessary for your Django project #}
+
+{% block content %}
+    <div class="  px-3 py-8">
+        <!-- Categories Section -->
+    <div class="bg-white p-5 rounded-xl shadow-md mb-6">
+        {% comment %} <h2 class="text-xl font-semibold text-gray-900 mb-4">Explore Categories</h2> {% endcomment %}
+
+        <div id="category-links" class="flex flex-wrap gap-3 sm:gap-4">
+
+            <!-- All News -->
+            <a href="{% url 'news_by_cat' %}"
+            class="category-link px-3 py-2 rounded-full text-sm font-medium transition duration-200 ease-in-out
+            {% if not category %} bg-blue-600 text-white shadow-sm hover:bg-blue-700 {% else %} bg-gray-100 text-gray-700 hover:bg-gray-200 {% endif %}"
+            data-category="all">All News</a>
+
+            <!-- Loop through Categories -->
+            {% for cat in all_category %}
+                <a href="{% url 'news_by_cat' cat.pk %}"
+                    class="category-link px-3 py-2 rounded-full text-sm font-medium transition duration-200 ease-in-out
+                    {% if category.pk == cat.pk %} bg-blue-600 text-white shadow-sm hover:bg-blue-700 {% else %} bg-gray-100 text-gray-700 hover:bg-gray-200 {% endif %}"
+                    data-category="{{ cat.title|lower }}">
+                    {{ cat.title }}
+                    
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+
+        <!-- News Grid -->
+        <!-- Changed lg:grid-cols-4 back to lg:grid-cols-3 for 3 cards per row on large screens -->
+        <section>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-2.5">
+
+    {% if page_obj %}
+        {% for news in page_obj %}
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
+            <img class="w-full h-52 object-cover" src="{{ news.heading_image.url}}" alt="{{ news.title }}">
+            <div class="p-6">
+                <h3 class="text-xl font-semibold text-gray-900 mb-2"> 
+                <a href="{% url 'news_details' news.pk %}" class="block hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">{{ news.title }} </a>
+                </h3>
+                <p class="text-gray-600 text-sm mb-4 leading-relaxed"> {{ news.sub_content }}</p>
+                <div class="flex justify-between items-center text-sm text-gray-500">
+                    <h4 class="text-sm my-2.5">{{ news.created_at|date:"F j, Y" }}</h4>
+                    <a href="{% url 'news_details' news.pk %}" class="text-blue-600 hover:text-blue-800 font-medium transition duration-200">Read More &rarr;</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="col-span-full text-center text-red-600 bg-white py-10 rounded-xl shadow-md">
+            Sorry, no news articles found in this category.
+        </div>
+    {% endif %}
+
+    </div>
+</section>
+
+
+        
+      
+    <!-- Pagination -->
+<section class="mt-10">
+    {% if page_obj.has_other_pages %}
+    <div class="flex justify-center items-center space-x-2 mt-5 pt-3" aria-label="Pagination">
+
+        <!-- Previous Button -->
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}" class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg shadow-sm hover:bg-gray-100 transition duration-200">
+                Previous
+            </a>
+        {% else %}
+            <span class="px-4 py-2 text-sm font-medium text-gray-400 bg-gray-100 border border-gray-200 rounded-lg shadow-sm">
+                Previous
+            </span>
+        {% endif %}
+
+        <!-- Page Numbers -->
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <span class="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-blue-600 rounded-lg shadow-sm">
+                    {{ num }}
+                </span>
+            {% elif num > page_obj.number|add:-3 and num < page_obj.number|add:3 %}
+                <a href="?page={{ num }}" class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg shadow-sm hover:bg-gray-100 transition duration-200">
+                    {{ num }}
+                </a>
+            {% endif %}
+        {% endfor %}
+
+        <!-- Next Button -->
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg shadow-sm hover:bg-gray-100 transition duration-200">
+                Next
+            </a>
+        {% else %}
+            <span class="px-4 py-2 text-sm font-medium text-gray-400 bg-gray-100 border border-gray-200 rounded-lg shadow-sm">
+                Next
+            </span>
+        {% endif %}
+    </div>
+    {% endif %}
+</section>
+
+
+    </div>
+{% endblock content %}

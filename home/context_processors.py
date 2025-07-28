@@ -2,6 +2,7 @@
 from home.templatetags.bangla_filters import convert_to_bangla_number
 from .models import *
 from datetime import datetime
+from .models import News
 
 def default(request):
 
@@ -21,3 +22,9 @@ def default(request):
         'bangla_date':bangla_date,
         'current_date': current_date,
     }
+
+
+
+def top_headline_context(request):
+    top_heading = News.objects.filter(category__name='Breaking News').order_by('-created_at')[:5]
+    return {'top_heading': top_heading}

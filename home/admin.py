@@ -35,12 +35,12 @@ class NewsAdmin(admin.ModelAdmin):
 admin.site.register(News, NewsAdmin)
 admin.site.register(SiteInfo)
 admin.site.register(Default_pages)
+admin.site.register(Subscriber)
 
 
-
-admin.site.site_header = "Jagoron News Panel"
-admin.site.site_title = "Jagoron News Admin" 
-admin.site.index_title = "Welcome to Jagoron News"
+admin.site.site_header = "The Chronify News Panel"
+admin.site.site_title = "The Chronify Admin" 
+admin.site.index_title = "Welcome to The Chronify"
 
 admin.site.register(VideoPost)
 

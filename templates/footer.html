@@ -1,59 +1,19 @@
-<footer role="contentinfo" class="bbc-1lvqtkx e1njnjcp0">
-    <div class="ep1mqcj0 bbc-5g7yny e10yv9r12">
-
-        <!-- logo section start -->
-        <div class="bbc-1dg7u9h e10yv9r13"><a href="/" id="footer"
-                class="focusIndicatorRemove bbc-1re47cx e10yv9r11" aria-labelledby="BrandLink-footer">
-                <img width="130" height="36" src="{{site_info.logo.url}}" alt="">
-                <span id="BrandLink-footer" role="text" class="bbc-m04vo2"><span lang="en-GB">BBC
-                        News, </span><span>বাংলা</span></span></a></div>
-        <!-- logo section end -->
-
-
-    </div>
-
-    <div class="bbc-1ec4rn5">
-        <div class="bbc-n6enek">
-            <ul role="list" class="bbc-18pquoo">
-
-                {% for page in default_pages %}
-                {% if page.link and page.link == 'institutional' %}
-                <li class="bbc-a32bmp"><a href="{% url 'default_page_detail' page.link %}"
-                        class="focusIndicatorInvert bbc-14imjm8">{{ page.title }}</a>
-                </li>
-                {% endif %}
-                {% endfor %}
-
-              
-                {% for page in default_pages %}
-                    {% if page.link and page.link != 'institutional' and page.link != 'editorialguidelines' %}
-                        <li role="listitem">
-                            <a href="{% url 'default_page_detail' page.link %}" class="focusIndicatorInvert bbc-14imjm8">
-                                {{ page.title }}
-                            </a>
-                        </li>
-
-                  
-                    {% endif %}
-                {% endfor %}
-
-            </ul>
-
-            <p class="bbc-cmqtv6"><span lang="en-GB">©<!-- --> </span>2025 জাগরণ। বাইরের কোন সাইটের তথ্যের
-                জন্য জাগরণ দায়বদ্ধ নয়।<!-- --> 
-
-                {% for page in default_pages %}
-                {% if page.link and page.link == 'editorialguidelines' %}
-
-                <a style="font-weight: 800; color: aliceblue;" href="{% url 'default_page_detail' page.link %}">{{ page.title }}</a>
-
-                    {% endif %}
-                {% endfor %}
-                
-                </p>
+<!-- Footer -->
+<section class="bg-black w-full py-10">
+    <div class="max-w-5xl mx-auto px-4">
+        <!-- Footer Links -->
+        <div class="flex flex-col md:flex-col md:justify-start items-start gap-6 text-left text-xl text-white mb-6">
+            <a href="{% url 'policy_detail' link='institutional' %}" class="hover:text-blue-400 transition">Why you can believe in Awakening</a>
+            <a href="{% url 'policy_detail' link='terms' %}" class="hover:text-blue-400 transition">Terms of Use</a>
+            <a href="{% url 'policy_detail' link='privacy' %}" class="hover:text-blue-400 transition">Privacy Policy</a>
         </div>
+
+        <!-- Footer Copyright -->
+        <p class="text-left text-m text-gray-300 leading-relaxed px-0">
+            © 2025 <strong>Chronify</strong>. Chronify is not responsible for the content of external sites.
+            <a href="{% url 'policy_detail' link='editorialguidelines' %}" class="text-blue-400 font-medium hover:underline">
+                Read about Chronify's perspective on external links.
+            </a>
+        </p>
     </div>
-
-</footer>
-
-
+</section>
